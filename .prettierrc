@@ -1,0 +1,18 @@
+{
+    "plugins": ["@prettier/plugin-ruby"],
+    "rubySingleQuote": true,
+    "overrides": [
+        {
+          "files": "*.html.erb",
+          "options": { "parser": "html" }
+        },
+        {
+          "files": "*.scss",
+          "options": { "parser": "scss" }
+        },
+        {
+          "files": "*.rb",
+          "options": { "parser": "ruby" }
+        }
+    ]
+}

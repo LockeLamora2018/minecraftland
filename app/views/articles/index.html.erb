@@ -1,0 +1,31 @@
+<%= render_if @highlights[0].present?, 'longer_featured', article: @highlights[0] %> 
+
+<div class="row mb-2">
+    <%= render 'medium_featured', article: @highlights[1] %>
+    <%= render 'medium_featured', article: @highlights[2] %>
+</div>
+
+<div class="row g-5">
+    <div class="col-md-8">
+        <h3 class="pb-4 mb-4 fst-italic border-bottom">
+            Seja muito bem vindo!
+        </h3>
+        <p>
+            <%= link_to 'Novo Artigo', new_article_path, 
+            class:"btn btn-outline-primary" if user_signed_in? %>
+        </p>
+            <%= render @articles %>
+            <%= render 'pagination'%>
+    </div>
+    <%= render 'right_side' %>
+</div>
+
+<%= content_for :category_filter do %>
+    <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+            <% @categories.each do |category| %>
+                <%= link_to category.name, root_path(category: category.name), class: "nav-item nav-link link-body-emphasis #{'category-active' if category.name.to_s == params[:category]}" %>
+            <% end %>
+        </nav>
+    </div>
+<%end%>

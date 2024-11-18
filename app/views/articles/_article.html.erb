@@ -1,0 +1,19 @@
+<article class="blog-post">
+  <h2 class="display-5 link-body-emphasis mb-1"><%= article.title %></h2>
+    <p class="blog-post-meta">
+      <%= render 'article_details', article: article %>
+    </p>
+    <p><%= truncate(article.body, length: 150) %></p>
+    <p><%= link_to 'Continue lendo...', article, class: 'btn btn-link' %></p>
+
+  <div class='d-flex gap-2'>
+    <%= link_to 'Editar', edit_article_path(article), 
+    class: "btn btn-outline-secondary" if policy(article).update? %>
+
+    <%= button_to 'Excluir', 
+      article_path(article), 
+      method: :delete,
+      data: {confirm: "Você tem certeza?"},
+      class: "btn btn-outline-danger" if policy(article).destroy? %>
+  </div>
+</article>

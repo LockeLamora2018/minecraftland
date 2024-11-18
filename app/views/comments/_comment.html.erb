@@ -1,0 +1,12 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= mes_dia_ano(comment.created_at) %></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Commenter: <%= comment.user.email%></h6>
+    <p class="card-text"><%= comment.body %></p>
+    <%= button_to 'Excluir', 
+      article_comment_path(@article, comment), 
+      method: :delete,
+      data: {confirm: "Você tem certeza?"}, 
+      class: "btn btn-outline-danger" if policy(comment).destroy? %>
+  </div>
+</div>
