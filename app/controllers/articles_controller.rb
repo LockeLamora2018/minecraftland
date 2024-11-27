@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
                          .desc_order
                          .first(3)
 
-    highlights_ids = @highlights.pluck(:id).join(',')
+    highlights_ids = @highlights.any? ? @highlights.pluck(:id).join(',') : nil
 
     @articles = Article.includes(:category, :user)
                        .without_highlights(highlights_ids)
